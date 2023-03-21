@@ -17,17 +17,17 @@ let thingsToDo = [
         completed: false
     }]
 
-    /*This is how I did it and it still worked
-    let numOfThingsTodo = 0
-    thingsToDo.forEach(function(todo)){
-        if(!todo.completed){
-            numOfThingsTodo++;
+/*This is how I did it and it still worked
+let numOfThingsTodo = 0
+thingsToDo.forEach(function(todo)){
+    if(!todo.completed){
+        numOfThingsTodo++;
 
-        }
-        //we just used this variable in our summarystatement
     }
-    */
-
+    //we just used this variable in our summarystatement
+}
+*/
+/*
 const incompleteTodos = thingsToDo.filter(function (todo) {
     return !todo.completed
 })
@@ -40,4 +40,9 @@ thingsToDo.forEach(function (note) {
     const newTask = document.createElement('p')
     newTask.textContent = note.task
     document.querySelector('body').appendChild(newTask)
+})
+*/
+
+document.querySelector('button').addEventListener('click', function (event) {
+    event.target.textContent = 'I SAID DO SOMETHING'
 })
