@@ -16,21 +16,28 @@ let thingsToDo = [
         task: 'Finish 450 Homework',
         completed: false
     }]
-let numOfItemsLeft = 0
-thingsToDo.forEach(function (todo) {
 
-    if (!todo.completed) {
-        numOfItemsLeft++
+    /*This is how I did it and it still worked
+    let numOfThingsTodo = 0
+    thingsToDo.forEach(function(todo)){
+        if(!todo.completed){
+            numOfThingsTodo++;
+
+        }
+        //we just used this variable in our summarystatement
     }
-    console.log(numOfItemsLeft)
+    */
+
+const incompleteTodos = thingsToDo.filter(function (todo) {
+    return !todo.completed
 })
 const summaryStatement = document.createElement('p')
-summaryStatement.textContent = `You have ${numOfItemsLeft} items left to do`
+summaryStatement.textContent = `You have ${incompleteTodos.length} items left to do`
 document.querySelector('body').appendChild(summaryStatement)
 // How many todos you have left (p element)
 // Add a p for each todo above
 thingsToDo.forEach(function (note) {
     const newTask = document.createElement('p')
     newTask.textContent = note.task
-    document.querySelector('body').append(newTask)
+    document.querySelector('body').appendChild(newTask)
 })
