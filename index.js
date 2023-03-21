@@ -16,11 +16,21 @@ let thingsToDo = [
         task: 'Finish 450 Homework',
         completed: false
     }]
+let numOfItemsLeft = 0
+thingsToDo.forEach(function (todo) {
 
-const todos = document.querySelectorAll('p')
-
-todos.forEach(function (todo) {
-    if (todo.textContent.includes('the')) {
-        todo.remove()
+    if (!todo.completed) {
+        numOfItemsLeft++
     }
+    console.log(numOfItemsLeft)
+})
+const summaryStatement = document.createElement('p')
+summaryStatement.textContent = `You have ${numOfItemsLeft} items left to do`
+document.querySelector('body').appendChild(summaryStatement)
+// How many todos you have left (p element)
+// Add a p for each todo above
+thingsToDo.forEach(function (note) {
+    const newTask = document.createElement('p')
+    newTask.textContent = note.task
+    document.querySelector('body').append(newTask)
 })
