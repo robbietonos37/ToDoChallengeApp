@@ -43,6 +43,6 @@ thingsToDo.forEach(function (note) {
 })
 */
 
-document.querySelector('button').addEventListener('click', function (event) {
-    event.target.textContent = 'I SAID DO SOMETHING'
+document.querySelector('#add-todo').addEventListener('click', function (event) {
+    console.log('do something')
 })
