@@ -27,7 +27,7 @@ thingsToDo.forEach(function(todo)){
     //we just used this variable in our summarystatement
 }
 */
-/*
+
 const incompleteTodos = thingsToDo.filter(function (todo) {
     return !todo.completed
 })
@@ -41,8 +41,12 @@ thingsToDo.forEach(function (note) {
     newTask.textContent = note.task
     document.querySelector('body').appendChild(newTask)
 })
-*/
+
 
 document.querySelector('#add-todo').addEventListener('click', function (event) {
     console.log('do something')
+})
+
+document.querySelector('#new-todo-text').addEventListener('input', function (e) {
+    console.log(e.target.value)
 })
