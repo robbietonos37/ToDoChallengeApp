@@ -82,15 +82,23 @@ thingsToDo.forEach(function (note) {
 //Ends
 
 
-document.querySelector('#add-todo').addEventListener('click', function (event) {
-    console.log('do something')
-})
-
-document.querySelector('#new-todo-text').addEventListener('input', function (e) {
-    console.log(e.target.value)
-})
-
 document.querySelector('#search-text').addEventListener('input', function (e) {
     filters.searchText = e.target.value
     renderToDos(thingsToDo, filters)
 })
+
+document.querySelector('#ToDo-form').addEventListener('submit', function (e) {
+    e.preventDefault()
+
+    thingsToDo.push({ task: e.target.elements.newToDo.value, completed: false })
+    renderToDos(thingsToDo, filters)
+    e.target.elements.newToDo.value = ''
+})
+
+
+
+// 1. Create a form with a single input for todo text
+// 2. Setup a submit handler and cancel the default aciton
+// 3. Add a new item to the todos array with that text data
+// 4. Rerender the application
+// 5. clear the input field value
