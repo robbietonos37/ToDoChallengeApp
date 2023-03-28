@@ -36,13 +36,19 @@ thingsToDo.forEach(function(todo)){
 // Starts
 
 const filters = {
-    searchText: ''
+    searchText: '',
+    hideCompleted: false
 }
 
 const renderToDos = function (ToDos, filters) {
     const filteredToDos = ToDos.filter(function (todo) {
-        return todo.task.toLowerCase().includes(filters.searchText.toLowerCase())
+        const searchTextMatch = todo.task.toLowerCase().includes(filters.searchText.toLowerCase())
+        const hideCompletedMatch = !filters.hideCompleted || !todo.completed
+
+        return searchTextMatch && hideCompletedMatch
     })
+
+
 
     const incompleteTodos = filteredToDos.filter(function (todo) {
         return !todo.completed
@@ -94,6 +100,32 @@ document.querySelector('#ToDo-form').addEventListener('submit', function (e) {
     renderToDos(thingsToDo, filters)
     e.target.elements.newToDo.value = ''
 })
+
+const hideCompletedFilter = {
+    searchText: 'false'
+}
+
+const renderIncompleteTodos = function (Todos, filter) {
+    const filteredToDos = Todos.filter(function (todo) {
+        return todo.completed === filter
+    })
+
+    document.querySelector('#todos').innerHTML = ''
+
+    filteredToDos.forEach(function (todo) {
+        const todoEl = document.createElement('p')
+        todoEl.textContent = todo.task
+        document.querySelector('#todos').appendChild(todoEl)
+    })
+
+}
+
+document.querySelector('#hide-completed').addEventListener('change', function (e) {
+    filters.hideCompleted = e.target.checked
+    renderToDos(thingsToDo, filters)
+})
+
+
 
 
 
