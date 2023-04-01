@@ -20,11 +20,8 @@ const renderToDos = function (ToDos, filters) {
     const filteredToDos = ToDos.filter(function (todo) {
         const searchTextMatch = todo.task.toLowerCase().includes(filters.searchText.toLowerCase())
         const hideCompletedMatch = !filters.hideCompleted || !todo.completed
-
         return searchTextMatch && hideCompletedMatch
     })
-
-
 
     const incompleteTodos = filteredToDos.filter(function (todo) {
         return !todo.completed
@@ -34,8 +31,6 @@ const renderToDos = function (ToDos, filters) {
 
     document.querySelector('#todos').innerHTML = ''
     document.querySelector('#todos').appendChild(generateSummaryDOM(incompleteTodos))
-
-
 
     filteredToDos.forEach(function (todo) {
         generatetodosDOM(todo)
