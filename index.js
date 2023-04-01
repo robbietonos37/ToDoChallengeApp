@@ -1,21 +1,13 @@
-const thingsToDo = [
-    {
+// 1. Delete dummy data
+// 2. Read and parse the data when the app starts up
+// 3. Stringify and writie the data when new data
+
+let thingsToDo = [
+    /* {
         task: 'Clean room',
         completed: true
-    }, {
-        task: 'Submit applications',
-        completed: false
-    }, {
-        task:
-            'Finish math homework',
-        completed: true
-    }, {
-        task: 'Finish algo homework',
-        completed: false
-    }, {
-        task: 'Finish 450 Homework',
-        completed: false
-    }]
+    } */
+]
 
 /*This is how I did it and it still worked
 let numOfThingsTodo = 0
@@ -38,6 +30,12 @@ thingsToDo.forEach(function(todo)){
 const filters = {
     searchText: '',
     hideCompleted: false
+}
+
+const todoJSON = localStorage.getItem('thingsToDo')
+
+if (todoJSON !== null) {
+    thingsToDo = JSON.parse(todoJSON)
 }
 
 const renderToDos = function (ToDos, filters) {
@@ -97,8 +95,9 @@ document.querySelector('#ToDo-form').addEventListener('submit', function (e) {
     e.preventDefault()
 
     thingsToDo.push({ task: e.target.elements.newToDo.value, completed: false })
+    localStorage.setItem('thingsToDo', JSON.stringify(thingsToDo))
     renderToDos(thingsToDo, filters)
-    e.target.elements.newToDo.value = ''
+    //e.target.elements.newToDo.value = ''
 })
 
 const hideCompletedFilter = {
