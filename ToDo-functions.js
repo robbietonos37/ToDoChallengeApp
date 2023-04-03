@@ -38,11 +38,32 @@ const renderToDos = function (ToDos, filters) {
     })
 }
 
+// Setup a root div
+// Setup and append a checkbox (set type attribute)
+// someNode.setAttribute('type', 'checkbox)
+// Setup and append a span (set text)
+// Setup and append a button (set text)
+
 // Get the DOM elements for an individual note
 const generatetodosDOM = function (todo) {
-    const todoEl = document.createElement('p')
+    const rootDiv = document.createElement('div')
+    const todoCheckBox = document.createElement('input')
+    const todoEl = document.createElement('span')
+    const deleteButton = document.createElement('button')
+
+    //Setup todo checkbox
+    todoCheckBox.setAttribute('type', 'checkbox')
+    rootDiv.appendChild(todoCheckBox)
+
+    // Setup the todo text
     todoEl.textContent = todo.task
-    return todoEl
+    rootDiv.appendChild(todoEl)
+
+    // Setup the remove button
+    deleteButton.textContent = 'Delete'
+    rootDiv.appendChild(deleteButton)
+
+    return rootDiv
 }
 
 // Get the DOM elements for list summary
