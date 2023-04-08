@@ -3,6 +3,7 @@ const getSavedToDos = function () {
     const todoJSON = localStorage.getItem('thingsToDo')
 
     if (todoJSON !== null) {
+
         return JSON.parse(todoJSON)
     } else {
         return []
@@ -10,14 +11,15 @@ const getSavedToDos = function () {
 }
 
 // Save todos in localStorage
-const saveToDos = function (thingsToDo) {
-    localStorage.setItem('thingsToDo', JSON.stringify(thingsToDo))
+const saveToDos = function (todos) {
+    localStorage.setItem('thingsToDo', JSON.stringify(todos))
 }
 
 // Render application todos based on filters
 
 const renderToDos = function (ToDos, filters) {
     const filteredToDos = ToDos.filter(function (todo) {
+
         const searchTextMatch = todo.task.toLowerCase().includes(filters.searchText.toLowerCase())
         const hideCompletedMatch = !filters.hideCompleted || !todo.completed
         return searchTextMatch && hideCompletedMatch
@@ -27,13 +29,10 @@ const renderToDos = function (ToDos, filters) {
         return !todo.completed
     })
 
-    generateSummaryDOM(incompleteTodos)
-
     document.querySelector('#todos').innerHTML = ''
     document.querySelector('#todos').appendChild(generateSummaryDOM(incompleteTodos))
 
     filteredToDos.forEach(function (todo) {
-        generatetodosDOM(todo)
         document.querySelector('#todos').appendChild(generatetodosDOM(todo))
     })
 }
@@ -69,7 +68,7 @@ const generatetodosDOM = function (todo) {
 // Get the DOM elements for list summary
 
 const generateSummaryDOM = function (incompleteTodos) {
-    const summaryStatement = document.createElement('p')
+    const summaryStatement = document.createElement('h2')
     summaryStatement.textContent = `You have ${incompleteTodos.length} items left to do`
     return summaryStatement
 }

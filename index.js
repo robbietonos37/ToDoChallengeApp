@@ -15,29 +15,14 @@ document.querySelector('#search-text').addEventListener('input', function (e) {
 document.querySelector('#ToDo-form').addEventListener('submit', function (e) {
     e.preventDefault()
 
-    thingsToDo.push({ task: e.target.elements.newToDo.value, completed: false })
-    saveToDos()
+    thingsToDo.push({ id: uuidv4(), task: e.target.elements.text.value, completed: false })
+    saveToDos(thingsToDo)
     renderToDos(thingsToDo, filters)
-    //e.target.elements.newToDo.value = ''
+    e.target.elements.text.value = ''
 })
 
 const hideCompletedFilter = {
     searchText: 'false'
-}
-
-const renderIncompleteTodos = function (Todos, filter) {
-    const filteredToDos = Todos.filter(function (todo) {
-        return todo.completed === filter
-    })
-
-    document.querySelector('#todos').innerHTML = ''
-
-    filteredToDos.forEach(function (todo) {
-        const todoEl = document.createElement('p')
-        todoEl.textContent = todo.task
-        document.querySelector('#todos').appendChild(todoEl)
-    })
-
 }
 
 document.querySelector('#hide-completed').addEventListener('change', function (e) {
