@@ -1,3 +1,7 @@
+// 1. Wire up button event
+// 2. Remove todo by id
+// 3. Save and render the todos list
+
 // Fetch existing todos from localStorage
 const getSavedToDos = function () {
     const todoJSON = localStorage.getItem('thingsToDo')
@@ -13,6 +17,15 @@ const getSavedToDos = function () {
 // Save todos in localStorage
 const saveToDos = function (todos) {
     localStorage.setItem('thingsToDo', JSON.stringify(todos))
+}
+
+const deleteToDo = function (id) {
+    const todoIndex = thingsToDo.findIndex(function (todo) {
+        return todo.id === id
+    })
+    if (todoIndex > -1) {
+        thingsToDo.splice(todoIndex, 1)
+    }
 }
 
 // Render application todos based on filters
@@ -61,9 +74,17 @@ const generatetodosDOM = function (todo) {
     // Setup the remove button
     deleteButton.textContent = 'Delete'
     rootDiv.appendChild(deleteButton)
+    deleteButton.addEventListener('click', function () {
+        deleteToDo(todo.id)
+        saveToDos(thingsToDo)
+        renderToDos(thingsToDo, filters)
+    })
+
 
     return rootDiv
 }
+
+
 
 // Get the DOM elements for list summary
 
