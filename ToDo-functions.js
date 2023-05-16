@@ -1,6 +1,6 @@
-// 1. Wire up button event
-// 2. Remove todo by id
-// 3. Save and render the todos list
+// 1. Add event handler to checkbox
+// 2. Modify the correct objects completed property -> toggleTodo
+// 3. Save and render
 
 // Fetch existing todos from localStorage
 const getSavedToDos = function () {
@@ -13,6 +13,10 @@ const getSavedToDos = function () {
         return []
     }
 }
+
+// const checkerFunction = function(){
+//     const toDoInde
+// }
 
 // Save todos in localStorage
 const saveToDos = function (todos) {
@@ -80,6 +84,7 @@ const generatetodosDOM = function (todo) {
         renderToDos(thingsToDo, filters)
     })
 
+    todoCheckBox.checked = todo.completed;
 
     return rootDiv
 }
